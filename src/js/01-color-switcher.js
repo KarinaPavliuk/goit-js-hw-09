@@ -29,5 +29,3 @@ function onStop() {
   startBtn.disabled = false;
   stopBtn.disabled = true;
 }
-
-//dfghjkl;
