@@ -26,17 +26,26 @@ formEl.addEventListener('submit', onSubmit);
 
 function onSubmit(event) {
   event.preventDefault();
-  const delay = Number(formEl.delay.value);
-  const step = Number(formEl.step.value);
-  const amount = Number(formEl.amount.value);
+  let delay = Number(formEl.delay.value);
+  let step = Number(formEl.step.value);
+  let amount = Number(formEl.amount.value);
+
+  console.log('delay', delay);
+  console.log('step', step);
+  console.log('amount', amount);
+
+  if (step < '0' || delay < '0' || amount < '0') {
+    return Notify.failure(`❌ Value must be >= zero`);
+  }
 
   for (let i = 1; i <= amount; i++) {
-    createPromise(i, delay + (i - 1) * step)
+    createPromise(i, delay)
       .then(({ position, delay }) => {
         Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
       })
       .catch(({ position, delay }) => {
         Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
       });
+    delay += step;
   }
 }
