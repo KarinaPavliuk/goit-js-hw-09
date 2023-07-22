@@ -35,7 +35,7 @@ function onSubmit(event) {
   console.log('amount', amount);
 
   if (step < '0' || delay < '0' || amount < '0') {
-    return Notify.failure(`❌ Value must be >= zero`);
+    return Notify.failure(`❌ Value must be >= 0`);
   }
 
   for (let i = 1; i <= amount; i++) {
